@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CS349 Midterm 1</title>
+    </head>
+    <body>
+        <form>
+            <label for="fname">FIRST NAME</label>
+            <input type="text" id="fname" name="fname"><br>
+            <label for="lname">LAST NAME</label>
+            <input type="text" id="lname" name="lname"><br>
+            <label for="email">EMAIL:</label>
+            <input type="text" id="email" name="email"><br>
+            <label for="major">MAJOR</label>
+            <input type="radio" id="CS" name="major" value="CS">
+            <label for="CS"> CS</label>
+            <input type="radio" id="CSCE" name="major" value="CSCE">
+            <label for="CSCE">CSCE</label>
+            <input type="radio" id="MATH" name="major" value="MATH">
+            <label for="MATH">MATH</label> <br>
+            <input type="submit" value="SUBMIT">
+            <input type="reset" value="RESET">
+        </form>
+
+
+        
+        
+        <?php
+            //question 2   
+
+            $servername = "localhost";
+            $username = "";
+            $password = "";
+
+            //create connection 
+            $conn = new mysqli($servername, $username, $password);
+
+            //check connection
+            if($conn->connect_error){
+                die("Connection failed: " . $conn->connect_error);
+            }
+            echo "Connected successfully";
+
+
+            //question 3
+            $row = mysqli_fetch_object($result);
+
+            $db_userid = $row->admin_id;
+            $db_password = $row->admin_password;
+            $encryptpassword = sha1($userPasswd);
+            $db_name = $row->admin_name;
+
+            if($db_userid != $userid || $db_password != $encryptpasswwd){
+
+                //TODO
+                $result = "INSERT INTO DB_administrator (db_userid,db_password, db_name")
+                        VALUES ('db_userid','db_password','db_name')";
+                
+                if($result){
+                    echo("Insert to administrator failed. ".mysqli_error($connection));
+                }
+            }
+        ?>
+    </body>
+</html>
